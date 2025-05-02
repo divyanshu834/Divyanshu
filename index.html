@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Divyanshu Bairwa - Web Developer Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <a href="#home" class="logo"><h1>Divyanshu<span>.</span></h1></a>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Journey</a>
+      <a href="#contact">Contact</a>
+      <button id="theme-toggle"><i class="fas fa-moon"></i></button>
+    </nav>
+  </header>
+
+  <section id="home" class="section home">
+    <div class="home-content">
+      <h1 id="typed-text"></h1>
+      <p class="subtitle">Frontend Developer | Creative Problem Solver | Based in Jaipur</p>
+      <div class="cta-buttons">
+        <a href="#projects" class="btn btn-primary">View My Work</a>
+        <a href="#contact" class="btn btn-secondary">Contact Me</a>
+      </div>
+    </div>
+    <a href="#about" class="scroll-down"><span>Scroll down</span><i class="fas fa-chevron-down"></i></a>
+  </section>
+
+<section id="about" class="section about">
+  <h2 class="section-title" data-aos="fade-up">About Me</h2>
+  <div class="about-container">
+    <div class="about-image" data-aos="fade-right">
+      <img src="https://via.placeholder.com/400x400?text=Divyanshu+Bairwa" alt="Divyanshu Bairwa">
+    </div>
+    <div class="about-content" data-aos="fade-left">
+      <h3>Crafting Digital Experiences</h3>
+      <p>Hi, I'm <strong>Divyanshu Bairwa</strong>, a college student based in Jaipur with a passion for frontend development and creative design. Currently pursuing my <strong>B.A. (2nd Year)</strong> from <strong>Jaipur University</strong>, I'm continuously exploring modern web technologies and building user-centric websites.</p>
+      <p>I believe in turning ideas into reality with code, and that learning never stops. As someone from <strong>Karauli, Jounl</strong>, I bring small-town dedication with big dreams in tech.</p>
+      <blockquote style="margin: 1.5rem 0; font-style: italic; color: #888;">
+        "Code with purpose, design with passion, and build with love."
+      </blockquote>
+      <blockquote style="margin: 1.5rem 0; font-style: italic; color: #888;">
+        "Dream big, start small, and never stop improving."
+      </blockquote>
+      <div class="about-details">
+        <div class="detail-item">
+          <i class="fas fa-user"></i>
+          <div>
+            <h4>Name:</h4>
+            <p>Divyanshu Bairwa</p>
+          </div>
+        </div>
+        <div class="detail-item">
+          <i class="fas fa-envelope"></i>
+          <div>
+            <h4>Email:</h4>
+            <p><a href="mailto:dkb99113@gmail.com">dkb99113@gmail.com</a></p>
+          </div>
+        </div>
+        <div class="detail-item">
+          <i class="fas fa-phone"></i>
+          <div>
+            <h4>Phone:</h4>
+            <p><a href="tel:+917733874780">7733874780</a></p>
+          </div>
+        </div>
+        <div class="detail-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <div>
+            <h4>Address:</h4>
+            <p>Karauli, Jounl, Rajasthan</p>
+          </div>
+        </div>
+        <div class="detail-item">
+          <i class="fas fa-graduation-cap"></i>
+          <div>
+            <h4>Journey:</h4>
+            <p>B.A. 2nd Year, Jaipur University</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <footer>
+    <div class="footer-content">
+      <p>© <span id="year"></span> Divyanshu Bairwa. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <a href="#home" class="back-to-top" id="back-to-top"><i class="fas fa-arrow-up"></i></a>
+
+  <!-- External Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init();
+    var typed = new Typed("#typed-text", {
+      strings: ["Hi, I'm Divyanshu", "Frontend Developer", "Creative Problem Solver"],
+      typeSpeed: 60,
+      backSpeed: 30,
+      loop: true
+    });
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>

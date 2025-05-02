@@ -1,0 +1,861 @@
+/* style.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+/* ----------------------------- */
+/* ----- Root Variables -------- */
+/* ----------------------------- */
+:root {
+  --primary-color: #2962ff; /* Vibrant Blue */
+  --primary-dark: #0039cb;
+  --secondary-color: #00b8d4; /* Cyan */
+  --accent-color: #ffab00; /* Amber */
+
+  --text-color: #212529;      /* Dark Grey for text */
+  --text-light: #6c757d;     /* Lighter Grey */
+  --heading-color: #1a1a1a;  /* Slightly darker for headings */
+
+  --background-light: #f8f9fa; /* Very light grey */
+  --background-dark: #ffffff;  /* White for cards/sections */
+  --background-alt: #e9ecef;   /* Slightly darker bg for contrast */
+
+  --card-bg: #ffffff;
+  --border-color: #dee2e6;
+
+  --white: #fff;
+  --black: #000;
+
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 16px;
+  --border-radius-pill: 50px;
+
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.07);
+  --shadow-md: 0 5px 15px rgba(0,0,0,0.1);
+  --shadow-lg: 0 10px 30px rgba(0,0,0,0.12);
+
+  --font-family-base: 'Poppins', sans-serif;
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --transition-fast: all 0.2s ease-in-out;
+  --transition-medium: all 0.3s ease-in-out;
+  --transition-slow: all 0.5s ease-in-out;
+
+  --container-width: 1140px;
+  --gutter: 1.5rem; /* 24px */
+}
+
+/* ----------------------------- */
+/* ----- Dark Mode Variables --- */
+/* ----------------------------- */
+.dark-mode {
+  --primary-color: #448aff; /* Lighter blue for dark mode */
+  --primary-dark: #2962ff;
+  --secondary-color: #18ffff; /* Lighter cyan */
+  --accent-color: #ffd740; /* Lighter amber */
+
+  --text-color: #e9ecef;      /* Light grey text */
+  --text-light: #adb5bd;     /* Lighter grey */
+  --heading-color: #f8f9fa;  /* Near white for headings */
+
+  --background-light: #121212; /* Very dark grey */
+  --background-dark: #1e1e1e;  /* Slightly lighter dark for cards */
+  --background-alt: #2c2c2c;   /* Contrast dark background */
+
+  --card-bg: #1e1e1e;
+  --border-color: #444; /* Darker border */
+
+  --shadow-sm: 0 2px 5px rgba(0,0,0,0.2);
+  --shadow-md: 0 5px 18px rgba(0,0,0,0.3);
+  --shadow-lg: 0 10px 35px rgba(0,0,0,0.35);
+}
+
+/* ----------------------------- */
+/* ----- Base & Reset ---------- */
+/* ----------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px; /* Base font size */
+}
+
+body {
+  font-family: var(--font-family-base);
+  line-height: 1.7;
+  font-weight: var(--font-weight-normal);
+  color: var(--text-color);
+  background-color: var(--background-light);
+  transition: background-color var(--transition-medium), color var(--transition-medium);
+  overflow-x: hidden; /* Prevent horizontal scroll */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: var(--font-weight-semibold);
+  color: var(--heading-color);
+  line-height: 1.3;
+  margin-bottom: 0.75rem;
+}
+
+h1 { font-size: 2.8rem; }
+h2 { font-size: 2.2rem; } /* Section titles */
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.1rem; }
+
+p {
+  margin-bottom: 1rem;
+  color: var(--text-light);
+}
+.dark-mode p {
+  color: var(--text-light); /* Keep consistent variable use */
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+
+a:hover {
+  color: var(--primary-dark);
+}
+.dark-mode a:hover {
+  color: var(--primary-color); /* Slightly brighter hover in dark */
+  opacity: 0.9;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+ul {
+  list-style: none;
+}
+
+/* Accessibility: Improve focus visibility */
+:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+  border-radius: var(--border-radius-sm);
+}
+/* Form elements might need specific focus */
+input:focus-visible,
+textarea:focus-visible,
+button:focus-visible {
+   outline: 2px solid var(--primary-color);
+   outline-offset: 1px;
+}
+/* Adjust focus for dark mode if needed */
+.dark-mode :focus-visible {
+  outline-color: var(--accent-color);
+}
+
+/* ----------------------------- */
+/* ----- Utility Classes ------- */
+/* ----------------------------- */
+.container {
+  max-width: var(--container-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+
+.section {
+  padding: 6rem 0; /* Vertical padding only */
+  position: relative;
+  overflow: hidden; /* Contain AOS animations */
+}
+.section > .container { /* Apply horizontal padding via container */
+    padding-left: var(--gutter);
+    padding-right: var(--gutter);
+}
+
+.section-title {
+  font-size: 2.5rem; /* Slightly larger */
+  font-weight: var(--font-weight-bold);
+  margin-bottom: 4rem;
+  text-align: center;
+  position: relative;
+  color: var(--heading-color);
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -15px; /* Increased spacing */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 5px;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  border-radius: var(--border-radius-pill);
+}
+
+.section-subtitle {
+    text-align: center;
+    margin-top: -2.5rem;
+    margin-bottom: 3rem;
+    font-size: 1.1rem;
+    color: var(--text-light);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sr-only { /* Screen reader only text */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+
+/* ----------------------------- */
+/* ----- Buttons --------------- */
+/* ----------------------------- */
+.btn {
+  display: inline-block;
+  font-weight: var(--font-weight-semibold);
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: 0.75rem 1.5rem; /* Slightly larger padding */
+  font-size: 1rem;
+  border-radius: var(--border-radius-pill);
+  transition: var(--transition-medium);
+  line-height: 1.5;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn i {
+  margin-left: 0.5rem;
+  font-size: 0.9em;
+}
+
+.btn-primary {
+  color: var(--white);
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  box-shadow: var(--shadow-sm);
+}
+.btn-primary:hover {
+  background-color: var(--primary-dark);
+  border-color: var(--primary-dark);
+  color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-secondary {
+  color: var(--white);
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+  box-shadow: var(--shadow-sm);
+}
+.btn-secondary:hover {
+  background-color: #0097a7; /* Darker cyan */
+  border-color: #0097a7;
+  color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-outline {
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+.btn-outline:hover {
+  color: var(--white);
+  background-color: var(--primary-color);
+}
+.dark-mode .btn-outline {
+  color: var(--primary-color); /* Use lighter blue */
+  border-color: var(--primary-color);
+}
+.dark-mode .btn-outline:hover {
+  color: var(--background-dark);
+  background-color: var(--primary-color);
+}
+
+.btn-sm {
+  padding: 0.4rem 1rem;
+  font-size: 0.8rem;
+}
+
+/* ----------------------------- */
+/* ----- Header ---------------- */
+/* ----------------------------- */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem 0; /* Vertical padding only */
+  z-index: 1000;
+  transition: var(--transition-medium);
+  background-color: rgba(255, 255, 255, 0.8); /* Glassmorphism */
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-sm);
+}
+header .container { /* Use container for horizontal padding */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: var(--gutter);
+    padding-right: var(--gutter);
+}
+
+
+.dark-mode header {
+  background-color: rgba(30, 30, 30, 0.8); /* Dark Glassmorphism */
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+header .logo h1 {
+  font-size: 1.8rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--heading-color);
+  margin-bottom: 0;
+}
+
+header .logo span {
+  color: var(--primary-color);
+}
+
+header nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+header nav a {
+  color: var(--text-color);
+  font-weight: var(--font-weight-semibold);
+  padding: 0.5rem 0;
+  position: relative;
+}
+header nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary-color);
+  transition: width var(--transition-fast);
+}
+header nav a:hover::after,
+header nav a.active::after { /* Add active class via JS if needed */
+  width: 100%;
+}
+
+#theme-toggle {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.3rem;
+  line-height: 1; /* Prevent extra spacing */
+}
+#theme-toggle:hover {
+  color: var(--primary-color);
+}
+
+
+/* ----------------------------- */
+/* ----- Preloader ------------- */
+/* ----------------------------- */
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--background-light);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  transition: opacity var(--transition-slow) ease-out; /* Match JS timeout */
+  will-change: opacity;
+}
+.dark-mode #preloader {
+   background-color: var(--background-dark);
+}
+
+/* Basic Spinner */
+#preloader .spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border-left-color: var(--primary-color);
+  animation: spin 1s linear infinite;
+}
+.dark-mode #preloader .spinner {
+   border: 4px solid rgba(255, 255, 255, 0.1);
+   border-left-color: var(--primary-color);
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ----------------------------- */
+/* ----- Home Section ---------- */
+/* ----------------------------- */
+.home {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative; /* For scroll down arrow */
+  background-color: var(--background-dark); /* Slightly different bg */
+  padding-top: 80px; /* Account for fixed header */
+}
+.dark-mode .home {
+    background-color: var(--background-dark); /* Consistent dark bg */
+}
+
+.home-content h1 {
+  font-size: 3.5rem; /* Larger name */
+  font-weight: var(--font-weight-bold);
+  margin-bottom: 0.5rem;
+  min-height: 110px; /* Prevent layout shift during typing */
+}
+/* Style the typed text specifically if needed */
+#typed-text {
+    /* Can add gradient text here */
+     background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text; /* Standard */
+    text-fill-color: transparent; /* Standard */
+}
+
+.home-content .subtitle {
+  font-size: 1.4rem;
+  font-weight: var(--font-weight-light);
+  color: var(--text-light);
+  margin-bottom: 2rem;
+}
+
+.home-content .cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+
+.scroll-down {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--text-light);
+  font-size: 0.9rem;
+  text-align: center;
+  animation: bounce 2s infinite;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  opacity: 0.8;
+}
+.scroll-down i {
+  font-size: 1.2rem;
+}
+.scroll-down:hover {
+    color: var(--primary-color);
+}
+
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  40% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+  60% {
+    transform: translateX(-50%) translateY(-5px);
+  }
+}
+
+
+/* ----------------------------- */
+/* ----- About Section --------- */
+/* ----------------------------- */
+.about {
+    background-color: var(--background-light); /* Alternating background */
+}
+.dark-mode .about {
+    background-color: var(--background-light);
+}
+
+.about-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr; /* Image column smaller */
+  gap: 3rem;
+  align-items: center;
+}
+
+.about-image img {
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-lg);
+  object-fit: cover; /* Ensure image covers area */
+  aspect-ratio: 1 / 1; /* Make it square */
+}
+
+.about-content h3 {
+  margin-bottom: 1.5rem;
+  color: var(--primary-color);
+}
+
+.about-details {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Responsive grid */
+  gap: 1.5rem;
+}
+
+.detail-item {
+  display: flex;
+  align-items: flex-start; /* Align items to the top */
+  gap: 1rem;
+}
+
+.detail-item i {
+  font-size: 1.3rem;
+  color: var(--primary-color);
+  margin-top: 5px; /* Align icon slightly lower */
+  flex-shrink: 0; /* Prevent icon from shrinking */
+  width: 25px; /* Fixed width for alignment */
+  text-align: center;
+}
+
+.detail-item h4 {
+  font-size: 1rem;
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: 0.2rem;
+  color: var(--heading-color);
+}
+
+.detail-item p, .detail-item p a {
+  font-size: 0.95rem;
+  color: var(--text-light);
+  margin-bottom: 0;
+}
+.detail-item p a:hover {
+    text-decoration: underline;
+}
+
+
+/* ----------------------------- */
+/* ----- Skills Section -------- */
+/* ----------------------------- */
+.skills {
+   background-color: var(--background-dark);
+}
+.dark-mode .skills {
+   background-color: var(--background-dark);
+}
+
+.skills-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 3rem;
+}
+
+.skill-category h3 {
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  color: var(--heading-color);
+}
+.skill-category h3 i {
+  color: var(--primary-color);
+  font-size: 1.5rem;
+}
+
+.skill-bar {
+  margin-bottom: 1.5rem;
+}
+
+.skill-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-weight: var(--font-weight-semibold);
+  font-size: 0.95rem;
+  color: var(--text-color);
+}
+.skill-info span:last-child {
+  color: var(--text-light);
+  font-weight: var(--font-weight-normal);
+}
+
+.progress-bar {
+  height: 10px;
+  background-color: var(--background-alt);
+  border-radius: var(--border-radius-pill);
+  overflow: hidden; /* Clip the inner progress */
+}
+.dark-mode .progress-bar {
+    background-color: #333; /* Darker background for bar */
+}
+
+.progress {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  border-radius: var(--border-radius-pill);
+  width: 0; /* Initial state set by JS */
+  display: block;
+  /* Transition added by JS */
+  transition: width 1.5s cubic-bezier(0.25, 1, 0.5, 1); /* Smooth ease-out */
+}
+
+
+/* ----------------------------- */
+/* ----- Projects Section ------ */
+/* ----------------------------- */
+.projects {
+    background-color: var(--background-light);
+}
+.dark-mode .projects {
+    background-color: var(--background-light);
+}
+.project-filters {
+  text-align: center;
+  margin-bottom: 3rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.filter-btn {
+  background: none;
+  border: 1px solid var(--border-color);
+  color: var(--text-light);
+  padding: 0.5rem 1.2rem;
+  border-radius: var(--border-radius-pill);
+  cursor: pointer;
+  transition: var(--transition-medium);
+  font-weight: var(--font-weight-semibold);
+}
+.filter-btn:hover {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: var(--white);
+}
+.filter-btn.active {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: var(--white);
+  box-shadow: var(--shadow-sm);
+}
+.dark-mode .filter-btn {
+    border-color: #555;
+    color: var(--text-light);
+}
+.dark-mode .filter-btn:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--background-dark);
+}
+.dark-mode .filter-btn.active {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--background-dark);
+}
+
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  /* transition for potential height changes - from JS */
+  transition: height 0.4s ease-out;
+}
+
+.project-card {
+  background: var(--card-bg);
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition-medium), box-shadow var(--transition-medium), opacity 0.4s ease-out; /* Updated for JS filter */
+  display: flex; /* Make card a flex container */
+  flex-direction: column; /* Stack image and content vertically */
+  transform-origin: center center; /* For scale animation */
+}
+
+.project-card:hover {
+  transform: translateY(-8px) scale(1.02); /* Combined effect */
+  box-shadow: var(--shadow-lg);
+}
+
+.project-card img {
+  width: 100%;
+  height: 220px; /* Fixed height for consistency */
+  object-fit: cover; /* Cover the area */
+  border-bottom: 1px solid var(--border-color);
+}
+
+.project-content {
+  padding: 1.5rem;
+  flex-grow: 1; /* Allow content to take remaining space */
+  display: flex;
+  flex-direction: column;
+}
+
+.project-content h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.project-content p {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    flex-grow: 1; /* Push tags and links down */
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.2rem; /* Space before links */
+}
+
+.project-tag {
+  background: var(--background-alt);
+  color: var(--text-light);
+  padding: 0.3rem 0.8rem;
+  border-radius: var(--border-radius-pill);
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-semibold);
+}
+.dark-mode .project-tag {
+    background: #333;
+    color: var(--text-light);
+}
+
+.project-links {
+    display: flex;
+    gap: 0.8rem;
+    margin-top: auto; /* Push to bottom if content is short */
+}
+.project-links .btn-sm {
+    text-transform: none; /* More natural look */
+    letter-spacing: 0;
+}
+.project-links .btn-sm i {
+    margin-right: 0.4rem; /* Icon before text */
+    margin-left: 0;
+}
+
+
+/* ----------------------------- */
+/* ----- Experience/Timeline --- */
+/* ----------------------------- */
+.timeline {
+   background-color: var(--background-dark);
+}
+.dark-mode .timeline {
+   background-color: var(--background-dark);
+}
+.timeline-container {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+/* The vertical line */
+.timeline-container::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background-color: var(--background-alt);
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+.dark-mode .timeline-container::before {
+    background-color: #333;
+}
+
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 3rem;
+  width: 50%;
+  padding: 0 2.5rem; /* Space from center line */
+}
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+/* Alternate sides */
+.timeline-item:nth-child(odd) {
+  left: 0;
+  padding-right: 4rem; /* Adjust padding for icon space */
+}
+.timeline-item:nth-child(even) {
+  left: 50%;
+  padding-left: 4rem; /* Adjust padding for icon space */
+}
+
+/* Icon positioning */
+.timeline-icon {
+  position: absolute;
+  top: 15px; /* Align with top of content usually */
+  width: 40px;
+  height: 40px;
+  background-color: var(--primary-color);
+  color: var(--white);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.1rem;
+  z-index: 10;
+  border: 3px solid var(--background-dark); /* Create separation */
+}
+.dark-mode .timeline-icon {
+    border-color: var(--background-dark);
+}
+
+.timeline-item:nth-child(odd) .timeline-icon {
+  right: -20px; /* Half width of icon */
+  transform: tra
